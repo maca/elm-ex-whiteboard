@@ -1,0 +1,93 @@
+div.whiteboard {
+  * {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  div.whiteboard-toolbox {
+    $spacing: 25px;
+
+    background-color: silver;
+    overflow: hidden;
+    position: relative;
+
+    .is-button {
+      width: 35px;
+      height: 30px;
+      border: none;
+      padding: 0;
+      margin: 2px 2px;
+      background: #ddd;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    button {
+      @extend .is-button;
+    }
+
+    .update-color {
+      text-indent: -9999px;
+      margin: 0 2px;
+    }
+
+    .update-color-red {
+      margin-left: $spacing;
+      background: red;
+    }
+    .update-color-green { background: green; }
+    .update-color-blue  { background: blue; }
+    .update-color-black { background: black; }
+    .update-color-white {
+      background: #ddd url("/images/eraser-icon.png") no-repeat 3px;
+      margin-left: $spacing;
+    }
+
+
+    .update-width {
+      $width: 30px;
+
+      visibility: hidden;
+      width: $width;
+      position: relative;
+
+      &:after {
+        @extend .is-button;
+        content: "●";
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 0;
+      }
+    }
+
+    .update-width-2px {
+      margin-left: $spacing;
+    }
+
+    .update-width-2px:after {
+      line-height: 28px;
+      font-size: 15px;
+    }
+
+    .update-width-3px:after {
+      line-height: 25px;
+      font-size: 30px;
+    }
+
+    .update-width-6px:after {
+      line-height: 25px;
+      font-size: 50px;
+    }
+
+    .reset-whiteboard {
+      width: inherit;
+      padding: 0 10px;
+      margin-left: $spacing;
+    }
+  }
+}

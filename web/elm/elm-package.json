@@ -1,0 +1,21 @@
+{
+    "version": "1.0.0",
+    "summary": "A simple witheboard built with Elm",
+    "repository": "https://github.com/aelita/elm-whiteboard.git",
+    "license": "MIT",
+    "source-directories": [
+        ".",
+        "Chat",
+        "Whiteboard"
+    ],
+    "exposed-modules": [],
+    "dependencies": {
+        "elm-lang/core": "5.0.0 <= v < 6.0.0",
+        "elm-lang/dom": "1.1.1 <= v < 2.0.0",
+        "elm-lang/html": "2.0.0 <= v < 3.0.0",
+        "elm-lang/mouse": "1.0.0 <= v < 2.0.0",
+        "elm-lang/svg": "2.0.0 <= v < 3.0.0",
+        "elm-lang/window": "1.0.0 <= v < 2.0.0"
+    },
+    "elm-version": "0.18.0 <= v < 0.19.0"
+}

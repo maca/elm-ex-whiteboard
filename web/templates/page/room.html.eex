@@ -1,0 +1,17 @@
+<style>
+  body { margin: 0; }
+</style>
+
+<script>
+  window.socketUrl =
+    window.location.origin.replace(/^http/, "ws") + "/socket";
+
+  window.clientId  = "<%= @client_id %>";
+  window.userToken = "<%= @client_id %>";
+</script>
+
+<div id="whiteboard-app"
+     class="whiteboard"
+     data-client-id="<%= @client_id %>"
+     data-channel="whiteboard:<%= @channel %>">
+</div>
