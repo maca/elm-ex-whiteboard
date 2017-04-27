@@ -17,6 +17,12 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
     </div> <!-- /container -->
+
+    <script>
+      window.socketUrl =
+        window.location.origin.replace(/^http/, "ws") + "/socket";
+    </script>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

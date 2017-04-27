@@ -5,7 +5,6 @@
     "license": "MIT",
     "source-directories": [
         ".",
-        "Chat",
         "Whiteboard"
     ],
     "exposed-modules": [],

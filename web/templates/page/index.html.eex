@@ -1,1 +1,7 @@
-<h1>Hello!</h1>
+<h1>Colaborative Whiteboard</h1>
+
+<p>
+  Draw with your buddies!
+</p>
+
+<div id="lobby-app"></div>
