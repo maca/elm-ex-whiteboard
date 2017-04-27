@@ -1,0 +1,2 @@
+*.exs linguist-vendored
+*.ex linguist-vendored
