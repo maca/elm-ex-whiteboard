@@ -1,3 +1,24 @@
+<style>
+  body {
+    font-size: 20px;
+    text-align: center
+  }
+
+  a { font-weight: bold }
+
+  input, button {
+    font-size: 1.5em;
+    padding: 10px 15px;
+    margin-top: 30px;
+  }
+
+  p {
+    margin: auto;
+    max-width: 800px;
+    margin-bottom: 25px;
+  }
+</style>
+
 <h1>Colaborative Whiteboard</h1>
 
 <p>

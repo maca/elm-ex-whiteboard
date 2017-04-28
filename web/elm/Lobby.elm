@@ -1,8 +1,8 @@
 module Lobby exposing (..)
 
-import Html exposing (Html, div, form, h1, p, b, button, text)
+import Html exposing (Html, div, form, h1, p, a, span, button, text)
 import Html.Events exposing (onInput, onClick)
-import Html.Attributes exposing (value, id, attribute, style)
+import Html.Attributes exposing (value, id, attribute, style, href)
 
 
 type alias Model =
@@ -70,10 +70,14 @@ greetingsText input url =
   p
     [ ]
     [ text "Just choose any name you want for your whiteboard and then share "
-    , text (if input == "" then "the url" else "this url ")
-    , b [ ] [ text (if input == "" then "" else url) ]
+    , if input == "" then (text "the url") else (whiteboardUrl url)
     , text " with your friends."
     ]
+
+
+whiteboardUrl : String -> Html Msg
+whiteboardUrl url =
+  span [ ] [ text "this url ", a [ href url ] [ text url ]]
 
 
 redirectTo : String -> String
