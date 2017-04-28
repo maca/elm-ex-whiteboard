@@ -5,6 +5,9 @@
 <script>
   window.socketUrl =
     window.location.origin.replace(/^http/, "ws") + "/socket";
+
+  window.clientId  = "<%= @client_id %>";
+  window.userToken = "<%= @client_id %>";
 </script>
 
 <div id="whiteboard-app"
