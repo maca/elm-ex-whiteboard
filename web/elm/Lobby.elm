@@ -1,13 +1,14 @@
 module Lobby exposing (..)
 
-import Html exposing (Html, div, form, h1, p, a, span, button, text)
+import Html exposing (Html, div, form, input, h1, p, a, span, button, text)
 import Html.Events exposing (onInput, onClick)
-import Html.Attributes exposing (value, id, attribute, style, href)
+import Html.Attributes exposing (value, disabled, id, attribute, style, href)
+import Regex exposing (regex, contains)
 
 
 type alias Model =
   { origin: String
-  , input: String
+  , name: String
   }
 
 
@@ -39,47 +40,54 @@ main =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    Input input ->
-      ( { model | input = input }, Cmd.none )
+    Input name ->
+      ( { model | name = name }, Cmd.none )
 
 
 view : Model -> Html Msg
-view { origin, input } =
+view { origin, name } =
   let
-      url = origin ++ input
-      redirect = redirectTo url
+      url = origin ++ name
+      nameIsBlank = not <| contains (regex "\\w") name
+
+      formAttrs =
+        if nameIsBlank then
+          [ ]
+        else
+          [ attribute "onsubmit" <| redirectTo url ]
 
   in
       form
-        [ attribute "onsubmit" redirect ]
-        [ greetingsText input url
+        formAttrs
+        [ greetingsText name url nameIsBlank
         , div
           []
-          [ Html.input
-              [ onInput Input, value input ]
+          [ input
+              [ onInput Input, value name ]
               [ ]
           , button
-              [ ]
+              [ disabled nameIsBlank ]
               [ text "Go!" ]
           ]
         ]
 
 
-greetingsText : String -> String -> Html Msg
-greetingsText input url =
+greetingsText : String -> String -> Bool -> Html Msg
+greetingsText name url nameIsBlank =
   p
     [ ]
     [ text "Just choose any name you want for your whiteboard and then share "
-    , if input == "" then (text "the url") else (whiteboardUrl url)
+    , if nameIsBlank then (text "the url") else (whiteboardUrl url)
     , text " with your friends."
     ]
 
 
 whiteboardUrl : String -> Html Msg
 whiteboardUrl url =
-  span [ ] [ text "this url ", a [ href url ] [ text url ]]
+  span [ ] [ text "this url ", a [ href url ] [ text url ] ]
 
 
 redirectTo : String -> String
 redirectTo destination =
   "window.location.href = '" ++ destination ++ "'; return false;"
+
