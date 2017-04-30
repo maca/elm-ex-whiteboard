@@ -17,12 +17,28 @@
     max-width: 800px;
     margin-bottom: 25px;
   }
+
+  footer {
+    margin-top: 40px;
+  }
 </style>
 
-<h1>Colaborative Whiteboard</h1>
+<header>
+  <h1>Colaborative Whiteboard</h1>
+</header>
 
-<p>
+<article>
+  <p>
   Draw with your buddies!
-</p>
+  </p>
 
-<div id="lobby-app"></div>
+  <div id="lobby-app"></div>
+</article>
+
+<footer>
+  <a href="https://github.com/maca/elm-ex-whiteboard">
+    view source code
+  </a>
+</footer>
+
+
