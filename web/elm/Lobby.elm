@@ -48,10 +48,10 @@ view : Model -> Html Msg
 view { origin, name } =
   let
       url = origin ++ name
-      nameIsBlank = not <| contains (regex "\\w") name
+      nameBlank = not <| contains (regex "\\w") name
 
       formAttrs =
-        if nameIsBlank then
+        if nameBlank then
           [ ]
         else
           [ attribute "onsubmit" <| redirectTo url ]
@@ -59,25 +59,25 @@ view { origin, name } =
   in
       form
         formAttrs
-        [ greetingsText name url nameIsBlank
+        [ greetingsText name url nameBlank
         , div
           []
           [ input
               [ onInput Input, value name ]
               [ ]
           , button
-              [ disabled nameIsBlank ]
+              [ disabled nameBlank ]
               [ text "Go!" ]
           ]
         ]
 
 
 greetingsText : String -> String -> Bool -> Html Msg
-greetingsText name url nameIsBlank =
+greetingsText name url nameBlank =
   p
     [ ]
     [ text "Just choose any name you want for your whiteboard and then share "
-    , if nameIsBlank then (text "the url") else (whiteboardUrl url)
+    , if nameBlank then (text "the url") else (whiteboardUrl url)
     , text " with your friends."
     ]
 
