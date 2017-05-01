@@ -2,7 +2,7 @@ module Lobby exposing (..)
 
 import Html exposing (Html, div, form, input, h1, p, a, span, button, text)
 import Html.Events exposing (onInput, onClick)
-import Html.Attributes exposing (value, disabled, id, attribute, style, href)
+import Html.Attributes exposing (autofocus, value, disabled, id, attribute, style, href)
 import Regex exposing (regex, contains)
 
 
@@ -63,7 +63,10 @@ view { origin, name } =
         , div
           []
           [ input
-              [ onInput Input, value name ]
+              [ onInput Input
+              , value name
+              , autofocus True
+              ]
               [ ]
           , button
               [ disabled nameBlank ]
