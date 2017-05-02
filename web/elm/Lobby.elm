@@ -8,7 +8,7 @@ import Regex exposing (regex, contains)
 
 type alias Model =
   { origin: String
-  , name: String
+  , room: String
   }
 
 
@@ -40,18 +40,18 @@ main =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    Input name ->
-      ( { model | name = name }, Cmd.none )
+    Input room ->
+      ( { model | room = room }, Cmd.none )
 
 
 view : Model -> Html Msg
-view { origin, name } =
+view { origin, room } =
   let
-      url = origin ++ name
-      nameBlank = not <| contains (regex "\\w") name
+      url = origin ++ room
+      roomBlank = not <| contains (regex "\\w") room
 
       formAttrs =
-        if nameBlank then
+        if roomBlank then
           [ ]
         else
           [ attribute "onsubmit" <| redirectTo url ]
@@ -59,28 +59,28 @@ view { origin, name } =
   in
       form
         formAttrs
-        [ greetingsText name url nameBlank
+        [ greetingsText url roomBlank
         , div
           []
           [ input
               [ onInput Input
-              , value name
+              , value room
               , autofocus True
               ]
               [ ]
           , button
-              [ disabled nameBlank ]
+              [ disabled roomBlank ]
               [ text "Go!" ]
           ]
         ]
 
 
-greetingsText : String -> String -> Bool -> Html Msg
-greetingsText name url nameBlank =
+greetingsText : String -> Bool -> Html Msg
+greetingsText url roomBlank =
   p
     [ ]
     [ text "Just choose any name you want for your whiteboard and then share "
-    , if nameBlank then (text "the url") else (whiteboardUrl url)
+    , if roomBlank then (text "the url") else (whiteboardUrl url)
     , text " with your friends."
     ]
 
